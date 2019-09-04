@@ -5,9 +5,9 @@ import logging
 
 #sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-def check_port_status():
+def check_port_status(host,port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    result = sock.connect_ex(('127.0.0.1',80))
+    result = sock.connect_ex((host,port))
     if result == 0:
         return "Port is open"
     else:
@@ -16,7 +16,7 @@ def check_port_status():
 counter = 0
 while True:
     #print('\x1b[2J')
-    port_stat = check_port_status()
+    port_stat = check_port_status('127.0.0.1',80)
     counter = counter + 1
     time.sleep(1)
     #print(counter)
